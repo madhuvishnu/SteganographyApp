@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .topnav {
+  overflow: hidden;
+  background-color:saddlebrown;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color:antiquewhite;
+  color: black;
+}
+
+.bottom_bar{
+    overflow: hidden;
+  background-color:saddlebrown;
+}
+    </style>
+    <title>Steganography App</title>
+</head>
+<body style="background-color:blanchedalmond">
+    <div class="topnav">
+        <h1 style="align-self: center;text-align: center; color:antiquewhite; font-family:'Times New Roman', Times, serif">Steganography App</h1>
+        <a href="/">M<sup>3</sup>A</a>
+        <a class="active" href="/">Home</a>
+        <a href="/about">About</a>
+      </div>
+    
+    
+    <br>
+
+    <form method="post" action="/encode" enctype="multipart/form-data">
+        <label for="image">Upload Image:</label>
+        <input type="file" name="image" accept=".png, .jpg, .jpeg" required >
+        
+        <label for="message">Enter Message:</label>
+        <textarea name="message" rows="4" required></textarea>
+
+        <button type="submit" style="background-color: gray; color: antiquewhite;">Encode</button>
+    </form>
+    <br>
+    {% if encoded_image %}
+    <h2>Encoded Image:</h2>
+    <img src="{{ url_for('download', filename=encoded_image) }}" alt="Encoded Image"  >
+    <a href="{{ url_for('download', filename=encoded_image) }}" download>Download Encoded Image</a>
+    {% endif %}
+    <br>
+
+    <form method="post" action="/decode" enctype="multipart/form-data">
+        <label for="image">Upload Image for Decoding:</label>
+        <input type="file" name="image" accept=".png, .jpg, .jpeg" required>
+
+        <button type="submit" style="background-color: gray; color: antiquewhite;">Decode</button>
+    </form>
+    <br>
+
+    {% if decoded_message %}
+    <h2>Decoded Message:</h2>
+    <p>{{ decoded_message }}</p>
+    {% endif %}
+
+    {% if decoded_image %}
+    <h2>Decoded Image:</h2>
+    <img src="{{ url_for('download', filename=decoded_image) }}" alt="Decoded Image" >
+    <a href="{{ url_for('download', filename=decoded_image) }}" download>Download Decoded Image</a>
+    {% endif %}
+    <br>
+
+    <div class="bottom_bar">
+        <h2 style="text-align: center; color: antiquewhite;">By :</h4>
+        <h3 style="text-align: center; color: antiquewhite;">Madhu Kumar G,  Manoj Kumar G M,  Mahendra M,  Abhishek M</h3>
+        <div style="text-align: center; color: antiquewhite;"><span>&copy</span> M<sup>3</sup>A</div>
+    </div>
+</body>
+</html>
