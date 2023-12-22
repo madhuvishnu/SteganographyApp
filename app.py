@@ -8,6 +8,8 @@ def encode_message(image_path, message):
     img = Image.open(image_path)
     binary_message = ''.join(format(ord(char), '08b') for char in message)
 
+    print(binary_message);
+
       # Add a delimiter to the binary message
     delimiter = '1111111100000000'  # Example delimiter: eight 1s followed by eight 0s
     binary_message += delimiter
